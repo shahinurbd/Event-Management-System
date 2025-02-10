@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+</head>
+<body>  
+    
+    {% comment %} nav section  {% endcomment %}
+    
+    <nav class="bg-gray-800 p-4">
+        <div class="container mx-auto my-auto flex justify-between">
+            {% comment %} logo {% endcomment %}
+            <div class="flex py-2">
+                <img class="h-10" src="{% static "images/logo.png" %}" alt="">
+                <h3 class="py-2 px-2 font-bold font-serif text-xl text-white">ColorsEvent</h3>
+            </div>
+
+            <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-default" aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon "></span>
+            </button>
+
+            {% comment %} menus {% endcomment %}
+            <div class="hidden w-full sm:block sm:w-auto" id="navbar-default">
+                <div class="flex gap-5 py-2 text-white ">
+                    <a href="{% url 'dashboard' %}" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Dashboard</a>
+                    <a href="{% url 'home' %}" class="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-gray-700">Home</a>
+                    <a href="{% url 'event-manage' %}" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Events</a>
+                    <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">About</a>
+                    <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Contact</a>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Mobile menu, show/hide based on menu state. -->
+        <div class="sm:hidden" id="mobile-menu">
+            <div class="space-y-1 px-2 pt-2 pb-3">
+                <a href="{% url 'dashboard' %}" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Dashboard</a>
+                <a href="{% url 'home' %}" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page"">Home</a>
+                <a href="{% url 'event-manage' %}" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Events</a>
+                <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">About</a>
+                <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    {% block dashboard %}
+    {% endblock dashboard %}
+    {% block event_details %}
+    {% endblock event_details %}
+    {% block home %}{% endblock home %}
+    {% block manage_event %}{% endblock manage_event %}
+    {% block event %}{% endblock event %}
+    {% block participant %}{% endblock participant %}
+    {% block category %}{% endblock category %}
+
+</body>
+</html>

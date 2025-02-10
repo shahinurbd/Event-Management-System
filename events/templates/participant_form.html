@@ -1,0 +1,18 @@
+{% extends "nav.html" %}
+{% block participant %}
+    <div class="py-5 px-5 w-1/2 m-auto">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="px-2 py-1 bg-gray-500 text-white">{{message}}</div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="py-5 px-5 w-1/2 m-auto border-2 border-gray-300 shadow-sm mt-10 mb-10">
+        {{participant_form}}
+        <button class="bg-blue-500 text-white p-2 mt-5 rounded-sm" type="submit">Submit</button>
+    </div>
+    </form>
+
+{% endblock participant %}
