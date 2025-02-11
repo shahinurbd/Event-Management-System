@@ -110,6 +110,10 @@ def create_category(request):
             messages.success(request,"Category Created Successfully")
             return redirect('create-category')
         
+    context = {'category_form': category_form}
+    
+    return render(request,'category_form.html',context)
+        
     
 
 def update_category(request,id):
