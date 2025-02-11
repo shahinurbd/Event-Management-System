@@ -94,8 +94,8 @@
         
         {% if messages %}
             {% for message in messages %}
-                <div class="mt-20 mx-5">
-                    <h1 class="font-extrabold font-serif text-yellow-600 border-b-2 lg:text-4xl md:text-4xl sm:text-3xl">{{message}}</h1>
+                <div class="mt-20 lg:mx-5 md:mx-5 mx-2">
+                    <h1 class="font-extrabold font-serif text-yellow-600 border-b-2 lg:text-4xl md:text-4xl sm:text-3xl text-3xl">{{message}}</h1>
                 </div>
             {% endfor %}
         {% endif %}
@@ -103,7 +103,7 @@
 
         {% comment %} events {% endcomment %}
 
-        <div class="grid lg:grid-cols-2 grid-cols-1">
+        <div class="grid lg:grid-cols-2 grid-cols-1 mx-2">
             {% for event in events %}
                     {% comment %} event card {% endcomment %}
                     <div class="container m-auto mt-10 max-w-sm bg-white border hover:border-yellow-500 rounded-lg shadow-sm dark:bg-gray-600 border-gray-300">

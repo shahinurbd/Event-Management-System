@@ -1,6 +1,6 @@
 {% extends "nav.html" %}
 {% block category %}
-    <div class="py-5 px-5 w-1/2 m-auto">
+    <div class="py-5 px-5 lg:mx-90 md:mx-50 sm:mx-20 mx-2">
         {% if messages %}
             {% for message in messages %}
                 <div class="px-2 py-1 bg-gray-500 text-white">{{message}}</div>
@@ -9,7 +9,7 @@
     </div>
     <form action="" method="POST">
         {% csrf_token %}
-        <div class="py-5 px-5 w-1/2 m-auto border-2 border-gray-300 shadow-sm mt-10 mb-10">
+        <div class="py-5 px-5 lg:w-1/2 md:w-1/2 m-auto border-2 border-gray-300 shadow-sm mt-5 mb-10 lg:mx-90 md:mx-50 sm:mx-20 mx-2">
         {{category_form}}
         <button class="bg-blue-500 text-white p-2 mt-5 rounded-sm" type="submit">Submit</button>
     </div>
