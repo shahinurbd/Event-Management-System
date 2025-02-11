@@ -146,16 +146,30 @@ def Home(request):
     return render(request,'nav.html')
 
 def Hero(request):
-    cat = categoryModel()
+    cat = categoryModel(request.GET)
+    query = request.GET.get('q', '')
     events = Event.objects.prefetch_related('participants').select_related('category').all()
-    total_participant = Participant.objects.all().count()
+    events = Event.objects.select_related('category').filter(Event_Name__icontains=query) | Event.objects.select_related('category').filter(location__icontains=query)
+    start_date = request.GET.get('sd','')
+    end_date = request.GET.get('ed','')
+    if start_date:
+        events = events.filter(Date_and_Time__date__gte=start_date)
+    if end_date:
+        events = events.filter(Date_and_Time__date__lte=end_date)
+
+    if cat.is_valid():
+        category = cat.cleaned_data.get('category')
+        if category:
+            events = events.select_related('category').filter(category=category)
 
     for event in events:
         event.participant_count=event.participants.count()
 
     context = {
         'events': events,
-        'cat': cat
+        'cat': cat,
+        'start_date': start_date,
+        'end_date': end_date,
     }
     return render(request,'hero_section.html',context)
 
@@ -245,45 +259,8 @@ def manage_event(request):
     return render(request,'manage_event.html',context)
 
 
-def search_events(request):
-    query = request.GET.get('q', '') 
-    events = Event.objects.select_related('category').filter(Event_Name__icontains=query) | Event.objects.select_related('category').filter(location__icontains=query)
-    
-    return render(request, 'hero_section.html', {'events': events, 'query': query})
 
-def category(request):
-    cat = categoryModel(request.GET)
-    events = Event.objects.select_related('category').all()
 
-    if cat.is_valid():
-        category = cat.cleaned_data.get('category')
-        if category:
-            events = events.select_related('category').filter(category=category)
-
-    context = {
-        "cat": cat,
-        "events": events
-        }
-    return render(request, "hero_section.html", context)
-
-def date_filter(request):
-    start_date = request.GET.get('sd','')
-    end_date = request.GET.get('ed','')
-
-    events = Event.objects.select_related('category').all()
-
-    if start_date:
-        events = events.filter(Date_and_Time__date__gte=start_date)
-    if end_date:
-        events = events.filter(Date_and_Time__date__lte=end_date)
-
-    context ={
-        'start_date': start_date,
-        'end_date': end_date,
-        'events': events
-    }
-
-    return render(request,'hero_section.html',context)
 
 
 

@@ -31,7 +31,7 @@
                 <p class="text-white md:text-lg lg:text-xl font-semibold font-sans">FIND BEST EVENT ON ColorsEvent</p>
                 <h1 class="text-white font-extrabold lg:text-6xl md:text-5xl sm:text-4xl text-4xl pt-5">Event Search</h1>
             </div>
-            <form method="GET" action="{% url 'search_events' %}">
+            <form method="GET" action="{% url 'home' %}">
                 <div class="grid lg:grid-cols-2 md:grid-cols-2 lg:mt-15 md:mt-15 mt-10">
 
                     <div class="mb-3">
@@ -61,7 +61,7 @@
 
             <div class="lg:flex lg:justify-between bg-gray-400 text-white rounded-sm px-2 py-2 my-2">
                 {% comment %} category filter {% endcomment %}
-                <form action="{% url 'category' %}", method="GET">
+                <form action="{% url 'home' %}", method="GET">
                     <div class="my-2">
                         
                         <div class="lg:flex lg:gap-2 md:flex md:gap-2 grid grid-cols-1">
@@ -79,7 +79,7 @@
                 </form>
 
                 {% comment %} date filter {% endcomment %}
-                <form action="{% url 'date_filter' %}", method="GET">
+                <form action="{% url 'home' %}", method="GET">
                     <div class="lg:flex lg:gap-2 grid grid-cols-1">
                         <div class="my-2">
                             <input class="p-2 border border-yellow-600 rounded-sm bg-white text-black" name="sd" value="{{start_date}}" type="text" placeholder="Start Date YYYY-MM-DD">
