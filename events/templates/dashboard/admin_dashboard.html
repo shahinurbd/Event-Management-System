@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-<title>{% block title %}Manage Event{% endblock title %}</title>
+<title>{% block title %}Admin Dashboard{% endblock title %}</title>
 
 {% block content %}
 {% load static %}
@@ -63,7 +63,7 @@
 
     {% comment %} message {% endcomment %}
 
-    <div class="py-5 px-5 w-1/2 m-auto mt-10">
+    <div class="py-5 px-5 w-1/2 m-auto mt-5">
         {% if messages %}
             {% for message in messages %}
                 <div class="px-2 py-3 bg-gray-500 text-white">{{message}}</div>
@@ -73,8 +73,8 @@
 
 {% comment %} all events {% endcomment %}
 
-<div class="mx-10">
-    <div class="mt-10 mb-5">
+<div class="lg:mx-10 md:mx-10 sm:mx-5 mx-2">
+    <div class="mt-5 mb-5">
         <h1 class="font-extrabold font-serif text-yellow-600 border-b-2 lg:text-4xl md:text-4xl sm:text-4xl text-3xl">All Events</h1>
     </div>
 
@@ -122,8 +122,8 @@
 
 {% comment %} all Category {% endcomment %}
 
-<div class="mx-10 mb-10">
-    <div class="mt-10 mb-5">
+<div class="lg:mx-10 md:mx-10 sm:mx-5 mx-2 mb-10">
+    <div class="mt-5 mb-5">
         <h1 class="font-extrabold font-serif text-yellow-600 border-b-2 lg:text-4xl md:text-4xl sm:text-4xl text-3xl">All Categorys</h1>
     </div>
 

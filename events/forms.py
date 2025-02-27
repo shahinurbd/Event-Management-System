@@ -1,5 +1,5 @@
 from django import forms
-from events.models import Event,Category,Participant
+from events.models import Event,Category
 
 
 class StyleFormMixin:
@@ -37,16 +37,22 @@ class StyleFormMixin:
                     'class': self.default_class,
                     'placeholder': "Enter Email"
                 })
+            elif isinstance(field.widget, forms.PasswordInput):
+                field.widget.attrs.update({
+                    'class': self.default_class,
+                    'placeholder': 'Enter password'
+                })
+            else:
+                field.widget.attrs.update({
+                    'class': self.default_class
+                })
             
-            
-            
-
 
 class EventModelForm(StyleFormMixin,forms.ModelForm):
     class Meta:
         model = Event
 
-        fields = ['Event_Name','description','Date_and_Time','location','category'] 
+        fields = ['Event_Name','description','Date_and_Time','location','category','asset'] 
 
         widgets = {
             'Date_and_Time': forms.DateTimeInput(attrs={
@@ -60,29 +66,6 @@ class EventModelForm(StyleFormMixin,forms.ModelForm):
             super().__init__(*arg, **kwarg)
             self.apply_style_widgets()
 
-
-           
-        
-
-class ParticipantModelForm(StyleFormMixin,forms.ModelForm):
-    class Meta:
-        model = Participant
-
-        fields = ['Participant_Name','email','event']
-
-        widgets = {
-            'email': forms.EmailInput(attrs={
-
-            }),
-            'event': forms.CheckboxSelectMultiple(attrs={
-
-            })
-            
-        }
-
-        def __init__(self, *arg, **kwarg):
-            super().__init__(*arg, **kwarg)
-            self.apply_style_widgets()
 
 
 

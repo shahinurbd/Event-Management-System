@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-<title>{% block title %}Manage Event{% endblock title %}</title>
+<title>{% block title %}Organizer Dashboard{% endblock title %}</title>
 
 {% block content %}
 {% load static %}
@@ -19,18 +19,6 @@
                         {% comment %} create event {% endcomment %}
                         <a href="{% url 'create-event' %}" class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white bg-blue-500 rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900 hover:bg-[#FF9119]/80 focus:outline-none focus:ring-[#FF9119]/50">
                             Create Event
-                            <div class="px-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
-                                    <path fill-rule="evenodd" d="M5.75 2a.75.75 0 0 1 .75.75V4h7V2.75a.75.75 0 0 1 1.5 0V4h.25A2.75 2.75 0 0 1 18 6.75v8.5A2.75 2.75 0 0 1 15.25 18H4.75A2.75 2.75 0 0 1 2 15.25v-8.5A2.75 2.75 0 0 1 4.75 4H5V2.75A.75.75 0 0 1 5.75 2Zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75Z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="mt-2">
-                        {% comment %} manage users {% endcomment %}
-                        <a href="{% url 'manage-user' %}" class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white bg-green-500 rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900 hover:bg-[#FF9119]/80 focus:outline-none focus:ring-[#FF9119]/50">
-                            Manage Users
                             <div class="px-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
                                     <path fill-rule="evenodd" d="M5.75 2a.75.75 0 0 1 .75.75V4h7V2.75a.75.75 0 0 1 1.5 0V4h.25A2.75 2.75 0 0 1 18 6.75v8.5A2.75 2.75 0 0 1 15.25 18H4.75A2.75 2.75 0 0 1 2 15.25v-8.5A2.75 2.75 0 0 1 4.75 4H5V2.75A.75.75 0 0 1 5.75 2Zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75Z" clip-rule="evenodd" />
@@ -63,7 +51,7 @@
 
     {% comment %} message {% endcomment %}
 
-    <div class="py-5 px-5 w-1/2 m-auto mt-10">
+    <div class="py-5 px-5 w-1/2 m-auto mt-5">
         {% if messages %}
             {% for message in messages %}
                 <div class="px-2 py-3 bg-gray-500 text-white">{{message}}</div>
@@ -73,8 +61,8 @@
 
 {% comment %} all events {% endcomment %}
 
-<div class="mx-10">
-    <div class="mt-10 mb-5">
+<div class="lg:mx-10 md:mx-10 sm:mx-5 mx-2">
+    <div class="mt-5 mb-5">
         <h1 class="font-extrabold font-serif text-yellow-600 border-b-2 lg:text-4xl md:text-4xl sm:text-4xl text-3xl">All Events</h1>
     </div>
 
@@ -122,8 +110,8 @@
 
 {% comment %} all Category {% endcomment %}
 
-<div class="mx-10 mb-10">
-    <div class="mt-10 mb-5">
+<div class="lg:mx-10 md:mx-10 sm:mx-5 mx-2 mb-10">
+    <div class="mt-5 mb-5">
         <h1 class="font-extrabold font-serif text-yellow-600 border-b-2 lg:text-4xl md:text-4xl sm:text-4xl text-3xl">All Categorys</h1>
     </div>
 
