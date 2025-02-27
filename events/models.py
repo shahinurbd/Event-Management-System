@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -19,18 +20,13 @@ class Event(models.Model):
         on_delete=models.CASCADE,
         related_name="cat",
     )
+    asset = models.ImageField(upload_to='event_asset', blank=True, null=True, default='event_asset/default-img.jpg')
+    participants = models.ManyToManyField(User, related_name='rsvp_event')
 
     def __str__(self):
         return self.Event_Name
     
 
-class Participant(models.Model):
-    Participant_Name = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
-    event = models.ManyToManyField(Event, related_name='participants')
-
-    def __str__(self):
-        return self.Participant_Name
 
 
 
