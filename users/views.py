@@ -112,10 +112,11 @@ class CreateGroup(LoginRequiredMixin,UserPassesTestMixin,View):
         if request.method == 'POST':
             form = CreateGroupForm(request.POST)
 
-            if form.is_valid():
-                group = form.save()
-                messages.success(request, f"Group {group.name} has been created successfully")
-                return redirect('create-group')
+        if form.is_valid():
+            group = form.save()
+            messages.success(request, f"Group {
+                             group.name} has been created successfully")
+            return redirect('create-group')
 
 
 
