@@ -114,8 +114,7 @@ class CreateGroup(LoginRequiredMixin,UserPassesTestMixin,View):
 
         if form.is_valid():
             group = form.save()
-            messages.success(request, f"Group {
-                             group.name} has been created successfully")
+            messages.success(request, f"Group {group.name} has been created successfully")
             return redirect('create-group')
 
 
