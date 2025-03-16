@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
 
 # Create your models here.
 
@@ -21,7 +21,7 @@ class Event(models.Model):
         related_name="cat",
     )
     asset = models.ImageField(upload_to='event_asset', blank=True, null=True, default='event_asset/default-img.jpg')
-    participants = models.ManyToManyField(User, related_name='rsvp_event')
+    participants = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='rsvp_event')
 
     def __str__(self):
         return self.Event_Name

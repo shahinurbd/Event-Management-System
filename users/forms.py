@@ -1,9 +1,13 @@
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm,PasswordChangeForm,PasswordResetForm,SetPasswordForm
 from django.contrib.auth.models import User,Group,Permission
 from django import forms
 from django.core.validators import RegexValidator
 import re
 from events.forms import StyleFormMixin
+from users.models import CustomUser
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 class CustomRegistrationForm(StyleFormMixin,forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
@@ -69,4 +73,37 @@ class CreateGroupForm(StyleFormMixin, forms.ModelForm):
     class Meta:
         model = Group
         fields = ['name','permissions']
+
+
+class CustomPasswordChangeForm(StyleFormMixin,PasswordChangeForm):
+    pass
+
+
+class CustomPasswordResetForm(StyleFormMixin,PasswordResetForm):
+    pass
+
+
+class CustomPasswordResetConfirmForm(StyleFormMixin,SetPasswordForm):
+    pass
+
+class EditProfileForm(StyleFormMixin, forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ['first_name', 'last_name', 'email', 'phone_number', 'bio', 'profile_image']
+
+    def clean_phone_number(self):
+        phone_number = self.cleaned_data.get('phone_number')
+        errors = []
+        regex = r'^(?:\+8801[3-9]\d{8}|01[3-9]\d{8})$'
+        if len(phone_number) < 11:
+            errors.append('phone number must be 11 digits')
+        if not re.match(regex, phone_number):
+            raise forms.ValidationError("Invalid phone number. Use +8801XXXXXXXXX or 01XXXXXXXXX.")
+
+
+        if errors:
+            raise forms.ValidationError(errors)
+        
+        return phone_number
+
 
