@@ -12,11 +12,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixi
 from django.views.generic import ListView,DetailView,UpdateView,DeleteView,TemplateView
 from django.urls import reverse_lazy
 from django.contrib.auth import get_user_model
+from django.views.generic.edit import FormView
 
 User = get_user_model()
-
-
-
 
 
 def is_admin(user):
@@ -24,24 +22,18 @@ def is_admin(user):
 
 
 
-class SignUp(View):
-    
-    def get(self, request, *args, **kwargs):
-        form = CustomRegistrationForm()
-        return render(request, 'registration/register.html',{'form': form})
-    
-    def post(self, request, *args, **kwargs):
-        if request.method == "POST":
-            form = CustomRegistrationForm(request.POST)
-            if form.is_valid():
-                user = form.save(commit=False)
-                user.set_password(form.cleaned_data.get('password'))
-                user.is_active = False
-                user.save()
-                messages.success(request,'A Confirmation mail has been sent.Please check your email.')
-                return redirect('sign-in')
-            else:
-                print("Form is not valid")
+class SignUpView(FormView):
+    template_name = "registration/register.html"
+    form_class = CustomRegistrationForm
+    success_url = reverse_lazy("sign-in")
+
+    def form_valid(self, form):
+        user = form.save(commit=False)
+        user.set_password(form.cleaned_data.get('password'))
+        user.is_active = False
+        user.save()
+        messages.success(self.request, 'A Confirmation mail has been sent.Please check your email.')
+        return super().form_valid(form)
 
 
 
