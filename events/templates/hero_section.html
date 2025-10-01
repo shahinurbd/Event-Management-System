@@ -6,7 +6,7 @@
 
     <div class="bg-gray-700 bg-[url({% static "images/hero-img.jpg" %})] bg-cover bg-blend-soft-light">
         <section class="dark:bg-gray-900">
-            <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+            <div class="grid max-w-screen-xl md:px-8 lg:px-20 px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
                 <div class="mr-auto place-self-center lg:col-span-7">
                     <h1 class="max-w-2xl mb-4 text-4xl font-semibold tracking-tight leading-none md:text-5xl xl:text-6xl text-yellow-400 font-sans">One Stop</h1>
                     <h1 class="max-w-2xl mb-4 text-6xl font-extrabold tracking-tight leading-none md:text-8xl xl:text-8xl text-yellow-400 font-sans">Event Planner</h1>
@@ -27,7 +27,7 @@
     {% comment %} search section {% endcomment %}
 
     <div class="bg-gray-800 bg-[url({% static "images/search-bg.jpg" %})] bg-cover bg-blend-soft-light">
-        <div class="container m-auto grid md:grid-cols-1 lg:grid-cols-2 lg:p-20 md:p-10 py-10 px-5">
+        <div class="container mx-auto grid md:grid-cols-1 lg:grid-cols-2 lg:p-20 md:p-10 py-10 px-5">
             <div class="">
                 <p class="text-white md:text-lg lg:text-xl font-semibold font-sans">FIND BEST EVENT ON ColorsEvent</p>
                 <h1 class="text-white font-extrabold lg:text-6xl md:text-5xl sm:text-4xl text-4xl pt-5">Event Search</h1>
@@ -36,7 +36,7 @@
                 <div class="grid lg:grid-cols-2 md:grid-cols-2 lg:mt-15 md:mt-15 mt-10">
 
                     <div class="mb-3">
-                        <input type="text" name="q" value="{{ query }}" placeholder="Event name,location etc." class="bg-white border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block lg:w-80 md:w-80 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-12">
+                        <input type="text" name="q" value="{{ query }}" placeholder="Event name,location etc." class="bg-white border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block lg:w-80 md:w-80 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-12">
                     </div>
                     
                     <div class="lg:mx-10 xl:mx-0 md:mx-5">

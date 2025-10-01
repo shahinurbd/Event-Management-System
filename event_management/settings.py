@@ -100,25 +100,27 @@ WSGI_APPLICATION = 'event_management.wsgi.application'
 # }
 
 #supabase
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('dbname'),
-        'USER': config('user'),
-        'PASSWORD': config('password'),
-        'HOST': config('host'),
-        'PORT': config('port'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': config('dbname'),
+#         'USER': config('user'),
+#         'PASSWORD': config('password'),
+#         'HOST': config('host'),
+#         'PORT': config('port'),
+#     }
+# }
 
 #onRender
-# DATABASES = {
-#     'default': dj_database_url.parse(
-#         os.getenv("DATABASE_URL"), 
-#         conn_max_age=600,
-#         ssl_require=True
-#     )
-# }
+
+DATABASES = {
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL'),
+        conn_max_age=600
+    )
+}
+
+
 
 
 # Password validation
