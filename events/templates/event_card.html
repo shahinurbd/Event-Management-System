@@ -1,20 +1,20 @@
 {% if events %}
-            <div class="grid lg:grid-cols-2 grid-cols-1">
+            <div class="grid lg:grid-cols-2 xl:grid-cols-3 grid-cols-1">
                 
                 {% for event in events %}
                         {% comment %} event card {% endcomment %}
                         <div class="container m-auto mt-10 max-w-sm bg-white border hover:border-yellow-500 rounded-lg shadow-sm dark:bg-gray-600 border-gray-300">
                             <a href="#">
-                                <img class="rounded-t-lg w-full h-72" src="{{event.asset.url}}" alt="" />
+                                <img class="rounded-t-lg w-full md:h-60 h-52" src="{{event.asset.url}}" alt="" />
                             </a>
                             <div class="mt-5 px-5 border-l-4 border-yellow-700">
                                 <a href="#">
-                                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-yellow-500 dark:text-white">{{event.Event_Name}}</h5>
-                                    <p>{{event.category.Category_Name}}</p>
+                                    <h5 class="mb-2 md:text-2xl text-lg font-bold tracking-tight text-yellow-500 dark:text-white">{{event.Event_Name}}</h5>
+                                    <p class="md:text-lg text-sm">{{event.category.Category_Name}}</p>
                                 </a>
                             </div>
                             {% comment %} event time {% endcomment %}
-                            <div class="flex mb-4 mt-4 px-5">
+                            <div class="flex mb-2 mt-3 px-5">
                                 <div class="bg-yellow-400 rounded-full w-6 px-4 py-1">
                                     <p class="w-6 -mx-3">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="size-6">
@@ -23,13 +23,13 @@
                                         
                                     </p>
                                 </div>
-                                <div class="px-5">
-                                    <p class="text-gray-500">Start {{event.Date_and_Time}}</p>
+                                <div class="px-5 py-1">
+                                    <p class="text-gray-500 md:text-md text-sm">Start {{event.Date_and_Time}}</p>
                                 </div>
                             </div>
                         
                             {% comment %} event location {% endcomment %}
-                            <div class="flex mb-4 mt-4 px-5">
+                            <div class="flex mb-2 mt-2 px-5">
                                 <div class="bg-yellow-400 rounded-full w-6 px-4 py-1">
                                     <p class="w-6 -mx-3">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="size-6">
@@ -37,13 +37,13 @@
                                         </svg> 
                                     </p>
                                 </div>
-                                <div class="px-5">
-                                    <p class="text-gray-500">{{event.location}}</p>
+                                <div class="px-5 py-1">
+                                    <p class="text-gray-500 md:text-md text-sm">{{event.location}}</p>
                                 </div>
                             </div>
                             {% comment %} total perticipant {% endcomment %}
                             <div class="">
-                                <div class="flex mb-4 mt-4 px-5">
+                                <div class="flex mb-3 mt-2 px-5">
                                     <div class="bg-yellow-400 rounded-full w-6 px-4 py-1">
                                         <p class="w-6 -mx-3">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="size-6">
@@ -53,8 +53,8 @@
                                             
                                         </p>
                                     </div>
-                                    <div class="px-5">
-                                        <p class="text-gray-500">Participants: <span class="font-bold">{{event.participant_count}}</span></p>
+                                    <div class="px-5 py-1">
+                                        <p class="text-gray-500 md:text-md text-sm">Participants: <span class="font-bold">{{event.participant_count}}</span></p>
                                     </div>
                                 </div>
 
@@ -62,7 +62,7 @@
 
                                     {% comment %} details button {% endcomment %}
                                     
-                                    <div class="lg:px-2 md:px-2 sm:px-2 px-5 pb-5">
+                                    <div class="lg:px-2 md:px-2 sm:px-2 px-5 pb-3">
                                         <a href="{% url 'event-details' event.id %}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-yellow-600 rounded-lg hover:bg-yellow-800 focus:ring-4 focus:outline-none  hover:bg-[#FF9119]/80 focus:ring-[#FF9119]/50">
                                             Details
                                             <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
@@ -72,13 +72,13 @@
                                     </div>
                                     {% comment %} rsvp button {% endcomment %}
                                     {% if request.user in event.participants.all %}
-                                        <button disabled class="text-gray-100 -mt-5 lg:mx-0 md:mx-0 sm:mx-0 mx-5"><span class="bg-blue-500  p-2 rounded">You have already joined this event</span></button>
+                                        <button disabled class="text-gray-100 -mt-3 lg:mx-0 md:mx-0 sm:mx-0 mx-5"><span class="bg-blue-500  p-2 rounded">You have already joined this event</span></button>
                                     {% else %}
                                         <form action="{% url 'join-event' event.id %}">
                                             {% csrf_token %}
-                                            <div class="px-5 pb-5 ">
+                                            <div class="px-5 ">
                                                 <button type="submit" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-yellow-800 focus:ring-4 focus:outline-none  hover:bg-[#FF9119]/80 focus:ring-[#FF9119]/50">
-                                                    RSVP
+                                                    Join Now
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 mx-1">
                                                         <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z" />
                                                     </svg>

@@ -10,6 +10,11 @@ from django.contrib.auth.models import User,Group
 from django.db.models import Prefetch
 from users.views import is_admin
 from django.contrib.auth import get_user_model
+from django.contrib import messages
+from .forms import ContactForm
+from django.core.mail import send_mail
+from django.shortcuts import render, redirect
+
 
 User = get_user_model()
 
@@ -330,6 +335,26 @@ def dashboard(request):
     
     return redirect('no-permission')
 
+def about(request):
+    return render(request, 'about.html')
+
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            contact = form.save()
+            send_mail(
+                subject=contact.subject,
+                message=contact.message,
+                from_email=contact.email,
+                recipient_list=['shahinurislam728@gmail.com'],
+            )
+            messages.success(request, "Your message has been sent successfully!")
+
+            return redirect('contact')
+    else:
+        form = ContactForm()
+    return render(request, 'contact.html', {'form': form})
 
 
 

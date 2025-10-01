@@ -42,6 +42,7 @@ class SignUp(View):
                 return redirect('sign-in')
             else:
                 print("Form is not valid")
+        return render(request, 'registration/register.html',{'form': form})
 
 
 

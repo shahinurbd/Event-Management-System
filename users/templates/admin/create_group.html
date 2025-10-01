@@ -2,7 +2,9 @@
 <title>{% block title %}Create Group{% endblock title %}</title>
 
 {% block content %}
-    <div class="w-1/2 m-auto mt-10">
+    <div class="md:max-w-2xl sm:mx-auto py-5 w-full bg-white rounded-2xl shadow-lg my-10  border-pink-500 border-t-8 border-b-8">
+        <div class="w-4/5 m-auto mt-10">
+            <h1 class="text-2xl pb-3 font-semibold border-b-2">Create Group</h1>
         <ul>
             {% if messages %}
                 {% for message in messages %}
@@ -12,11 +14,12 @@
                 {% endfor %}
             {% endif %}
         </ul>
-        <form method="POST">
+        <form method="POST" class="mt-3">
             {% csrf_token %}
             {{form}}
             <button type="submit" class="p-2 mt-5 mb-10 bg-blue-500 text-white rounded-sm">Create Group</button>
         </form>
+    </div>
     </div>
 {% endblock content %}
     

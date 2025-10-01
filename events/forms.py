@@ -1,5 +1,5 @@
 from django import forms
-from events.models import Event,Category
+from events.models import Event,Category,ContactMessage
 
 
 class StyleFormMixin:
@@ -89,6 +89,19 @@ class categoryModel(forms.Form):
         empty_label="All Categories",
         widget=forms.Select(attrs={'class': 'form-control border border-yellow-500 p-2 text-md bg-yellow-600 text-white rounded-sm'})
     )
+
+
+class ContactForm(StyleFormMixin,forms.ModelForm):
+    class Meta:
+        model = ContactMessage
+        fields = ['name', 'email', 'subject', 'message']
+
+        widgets = {
+            'name': forms.TextInput(attrs={'placeholder': 'Your Name', 'class': 'w-full p-2 border rounded'}),
+            'email': forms.EmailInput(attrs={'placeholder': 'Your Email', 'class': 'w-full p-2 border rounded'}),
+            'subject': forms.TextInput(attrs={'placeholder': 'Subject', 'class': 'w-full p-2 border rounded'}),
+            'message': forms.Textarea(attrs={'placeholder': 'Your Message', 'class': 'w-full p-2 border rounded'}),
+        }
     
 
 

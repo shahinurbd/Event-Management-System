@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'event_management.wsgi.application'
 #     }
 # }
 
-#for Postgres
+# for Postgres
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
@@ -99,13 +99,26 @@ WSGI_APPLICATION = 'event_management.wsgi.application'
 #     }
 # }
 
-#onRender
+#supabase
 DATABASES = {
-    'default': dj_database_url.config(
-        default='postgresql://event_manager_db_06i5_user:M5gxyPzQgKJ5lVeFv3PeHkaV7wYeyas3@dpg-cvbghe2j1k6c7396o3mg-a.oregon-postgres.render.com/event_manager_db_06i5',
-        conn_max_age=600
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('dbname'),
+        'USER': config('user'),
+        'PASSWORD': config('password'),
+        'HOST': config('host'),
+        'PORT': config('port'),
+    }
 }
+
+#onRender
+# DATABASES = {
+#     'default': dj_database_url.parse(
+#         os.getenv("DATABASE_URL"), 
+#         conn_max_age=600,
+#         ssl_require=True
+#     )
+# }
 
 
 # Password validation
@@ -164,8 +177,8 @@ EMAIL_PORT = config('EMAIL_PORT')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
-#FRONTEND_URL = 'http://127.0.0.1:8000'
-FRONTEND_URL = 'https://event-management-system-psdd.onrender.com'
+FRONTEND_URL = 'http://127.0.0.1:8000'
+# FRONTEND_URL = 'https://event-management-system-psdd.onrender.com'
 
 LOGIN_URL = '/users/sign-in/'
 LOGIN_REDIRECT_URL = '/events/hero/'
