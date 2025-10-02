@@ -4,7 +4,6 @@ import dj_database_url
 import os
 from dotenv import load_dotenv
 from datetime import timedelta
-import cloudinary
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -174,12 +173,12 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 
 #cloudinary setup
-cloudinary.config( 
-  	cloud_name = config('CLOUD_NAME'),
-  	api_key = config('API_KEY'),
-  	api_secret = config('API_SECRET'),
-    secure=True
-)
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv("CLOUD_NAME"),
+    'API_KEY': os.getenv("API_KEY"),
+    'API_SECRET': os.getenv("API_SECRET"),
+}
+
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
