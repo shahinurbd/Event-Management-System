@@ -3,6 +3,8 @@ from pathlib import Path
 import dj_database_url
 import os
 from dotenv import load_dotenv
+from datetime import timedelta
+import cloudinary
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -36,6 +38,8 @@ INSTALLED_APPS = [
     'users',
     "debug_toolbar",
     "core",
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 INTERNAL_IPS = [
@@ -167,6 +171,16 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+
+#cloudinary setup
+cloudinary.config( 
+  	cloud_name = config('CLOUD_NAME'),
+  	api_key = config('API_KEY'),
+  	api_secret = config('API_SECRET'),
+    secure=True
+)
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
 # Default primary key field type
