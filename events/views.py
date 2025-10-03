@@ -75,10 +75,10 @@ def delete_event(request,id):
         events = Event.objects.get(id=id)
         events.delete()
         messages.success(request, "Event Delete Successfully")
-        return redirect('event-manage')
+        return redirect('admin-dashboard')
     else:
         messages.error(request,"Something went wrong!!")
-        return redirect('event-manage')
+        return redirect('admin-dashboard')
         
 
 
@@ -139,10 +139,10 @@ def delete_category(request,id):
         category = Category.objects.get(id=id)
         category.delete()
         messages.success(request, "Category Delete Successfully")
-        return redirect('event-manage')
+        return redirect('admin-dashboard')
     else:
         messages.error(request,"Something went wrong!!")
-        return redirect('event-manage')
+        return redirect('admin-dashboard')
 
 def Home(request):
     return render(request,'nav.html')
@@ -321,7 +321,7 @@ def manage_user(request):
 def join_event(request, event_id):
     event = get_object_or_404(Event, id=event_id)
     event.participants.add(request.user)
-    messages.success(request, "You have successfully joined this event. ")
+    messages.success(request, "Congratulations!! 🎉 You have successfully joined this event. ")
     return redirect('event-details', event_id=event.id)
 
 @login_required
