@@ -172,20 +172,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 
-#cloudinary setup
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
-
-cloudinary.config( 
-  cloud_name = os.getenv('CLOUD_NAME'), 
-  api_key = os.getenv('API_KEY'), 
-  api_secret = os.getenv('API_SECRET'),
-  secure=True
-)
-
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
