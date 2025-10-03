@@ -200,7 +200,7 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 # FRONTEND_URL = 'http://127.0.0.1:8000'
-FRONTEND_URL = 'https://event-management-system-psdd.onrender.com'
+FRONTEND_URL = 'https://colors-event.onrender.com'
 
 LOGIN_URL = '/users/sign-in/'
 LOGIN_REDIRECT_URL = '/events/hero/'
