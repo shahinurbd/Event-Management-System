@@ -138,7 +138,8 @@ WSGI_APPLICATION = 'event_management.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         default=config('DB_URL'),
-        conn_max_age=600
+        conn_max_age=600,
+        ssl_require=True
     )
 }
 
