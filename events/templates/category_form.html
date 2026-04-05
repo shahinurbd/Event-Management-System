@@ -1,25 +1,68 @@
 {% extends "base.html" %}
-<title>{% block title %}Create Category{% endblock title %}</title>
-
+{% block title %}Create Category — ColorsEvent{% endblock %}
+{% block extra_head %}
+<style>
+  .form-field input, .form-field select, .form-field textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 0.875rem;
+    color: #1e293b;
+    transition: all 0.2s;
+    display: block;
+    margin-top: 0.375rem;
+    font-family: 'Inter', sans-serif;
+  }
+  .form-field input:focus, .form-field textarea:focus {
+    background: white;
+    border-color: #7c3aed;
+    box-shadow: 0 0 0 3px rgba(124,58,237,0.12);
+    outline: none;
+  }
+  .form-field label { font-size: 0.8125rem; font-weight: 600; color: #475569; text-transform: uppercase; letter-spacing: 0.05em; display: block; }
+  .form-field p { margin-bottom: 1.25rem; }
+  .form-field ul.errorlist { list-style: none; margin-top: 0.25rem; }
+  .form-field ul.errorlist li { font-size: 0.75rem; color: #ef4444; }
+</style>
+{% endblock %}
 {% block content %}
-   <div class="md:max-w-2xl sm:mx-auto py-5 w-full bg-white rounded-2xl shadow-lg my-10  border-pink-500 border-t-8 border-b-8">
-     <div class="w-5/6 mx-auto my-5">
-        <h1 class="text-2xl pb-3 font-semibold border-b-2 ">Create Category</h1>
-        {% if messages %}
-            {% for message in messages %}
-                <div class="px-2 py-2 flex justify-start items-center gap-2 bg-gray-500 text-white rounded">
-              <div><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path fill="#ffffff" d="M320 576C178.6 576 64 461.4 64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576zM320 112C205.1 112 112 205.1 112 320C112 434.9 205.1 528 320 528C434.9 528 528 434.9 528 320C528 205.1 434.9 112 320 112zM390.7 233.9C398.5 223.2 413.5 220.8 424.2 228.6C434.9 236.4 437.3 251.4 429.5 262.1L307.4 430.1C303.3 435.8 296.9 439.4 289.9 439.9C282.9 440.4 276 437.9 271.1 433L215.2 377.1C205.8 367.7 205.8 352.5 215.2 343.2C224.6 333.9 239.8 333.8 249.1 343.2L285.1 379.2L390.7 234z"/></svg></div>
-              <p>{{message}}</p>
-              </div>
-            {% endfor %}
-          {% endif %}
-    </div>
-    <form action="" method="POST" class="mt-5">
+
+<div class="max-w-xl mx-auto px-6 py-12">
+  <a href="{% url 'dashboard' %}" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-primary-600 transition-colors mb-6">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+    Back to Dashboard
+  </a>
+
+  <div class="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden">
+    <div class="h-2 gradient-bg"></div>
+    <div class="p-8 md:p-10">
+      <div class="flex items-center gap-4 mb-8">
+        <div class="w-12 h-12 bg-amber-100 rounded-2xl flex items-center justify-center">
+          <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
+        </div>
+        <div>
+          <h1 class="font-display font-extrabold text-2xl text-slate-800">Create Category</h1>
+          <p class="text-slate-400 text-sm mt-0.5">Add a new event category to the system</p>
+        </div>
+      </div>
+
+      <form action="" method="POST" class="form-field">
         {% csrf_token %}
-        <div class="w-5/6 mx-auto">
-        {{category_form}}
-        <button class="bg-blue-500 text-white p-2 mt-5 rounded-sm" type="submit">Submit</button>
+        {{ category_form }}
+        <div class="flex flex-col sm:flex-row gap-3 mt-6">
+          <button type="submit" class="btn-amber text-white font-bold py-3.5 px-8 rounded-xl shadow-lg shadow-amber-500/25 flex items-center gap-2 justify-center">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            Create Category
+          </button>
+          <a href="{% url 'dashboard' %}" class="text-center text-slate-500 hover:text-slate-700 font-medium py-3.5 px-8 rounded-xl border border-slate-200 hover:border-slate-300 transition-all">
+            Cancel
+          </a>
+        </div>
+      </form>
     </div>
-    </form>
-   </div>
+  </div>
+</div>
+
 {% endblock content %}

@@ -1,69 +1,51 @@
 {% load static %}
-<header class="bg-gray-800 text-white shadow-md">
-    <nav class="container mx-auto px-6 py-3">
-      <div class="flex justify-between items-center">
-        <a href="{% url 'home' %}">
-        <div class="flex py-2">
-            <img class="h-10" src="{% static "images/logo.png" %}" alt="">
-            <h3 class="py-2 px-2 font-bold font-serif text-xl text-white">ColorsEvent</h3>
-        </div>
-        </a>
-        <div class="hidden md:flex space-x-4">
-          <a href="{% url 'home' %}" class="text-white hover:text-yellow-400">Home</a>
-          <a href="{% url 'about' %}" class="text-white hover:text-yellow-400">About</a>
-          <a href="{% url 'contact' %}" class="text-white hover:text-yellow-400">Contact</a>
-        </div>
-        <div class="md:hidden">
-          <button
-            id="menu-toggle"
-            class="text-white hover:text-gray-300 focus:outline-none ml-20"
-          >
-            <svg
-              class="h-6 w-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16m-7 6h7"
-              ></path>
-            </svg>
-          </button>
-        </div>
-        <div class="flex gap-1">
-          <a
-            href="{% url 'sign-in' %}"
-            class="hidden md:block bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300"
-            >Sign In</a
-          >
-          <a
-            href="{% url 'sign-up' %}"
-            class="hidden md:block bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300"
-            >Sign Up</a
-          >
-        </div>
-      </div>
-      <div id="mobile-menu" class="md:hidden hidden mt-4">
+<nav id="main-navbar" class="fixed top-0 left-0 right-0 z-40 bg-slate-900/95 glass border-b border-slate-700/50 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
 
-        <a href="{% url 'home' %}" class="block py-2 text-white hover:text-yellow-400"
-          >Home</a
-        >
-        <a href="{% url 'about' %}" class="block py-2 text-white hover:text-yellow-400"
-          >About</a
-        >
-        <a href="{% url 'contact' %}" class="block py-2 text-white hover:text-yellow-400"
-          >Contact</a
-        >
-        <a href="{% url 'sign-in' %}" class="block py-2 text-white hover:text-yellow-400"
-          >Sign In</a
-        >
-        <a href="{% url 'sign-up' %}" class="block py-2 text-white hover:text-yellow-400"
-          >Sign Up</a
-        >
+      <!-- Logo -->
+      <a href="{% url 'home' %}" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 rounded-xl gradient-bg flex items-center justify-center shadow-lg group-hover:shadow-glow transition-all duration-300">
+          <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <span class="text-white font-display font-bold text-lg">ColorsEvent</span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="{% url 'home' %}" class="nav-link text-slate-300 hover:text-white text-sm font-medium transition-colors">Home</a>
+        <a href="{% url 'about' %}" class="nav-link text-slate-300 hover:text-white text-sm font-medium transition-colors">About</a>
+        <a href="{% url 'contact' %}" class="nav-link text-slate-300 hover:text-white text-sm font-medium transition-colors">Contact</a>
       </div>
-    </nav>
-  </header>
+
+      <!-- Auth Buttons -->
+      <div class="hidden md:flex items-center gap-3">
+        <a href="{% url 'sign-in' %}" class="text-slate-300 hover:text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-slate-800 transition-all">Sign In</a>
+        <a href="{% url 'sign-up' %}" class="btn-primary text-white text-sm font-semibold px-5 py-2 rounded-lg shadow-lg">Get Started</a>
+      </div>
+
+      <!-- Mobile Toggle -->
+      <button id="menu-toggle" class="md:hidden text-slate-300 hover:text-white p-2 rounded-lg hover:bg-slate-800 transition-colors">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden hidden pb-4 border-t border-slate-700 mt-2 pt-4 animate-fade-in">
+      <div class="flex flex-col gap-1">
+        <a href="{% url 'home' %}" class="text-slate-300 hover:text-white hover:bg-slate-800 px-4 py-2.5 rounded-lg text-sm font-medium transition-all">Home</a>
+        <a href="{% url 'about' %}" class="text-slate-300 hover:text-white hover:bg-slate-800 px-4 py-2.5 rounded-lg text-sm font-medium transition-all">About</a>
+        <a href="{% url 'contact' %}" class="text-slate-300 hover:text-white hover:bg-slate-800 px-4 py-2.5 rounded-lg text-sm font-medium transition-all">Contact</a>
+        <div class="flex gap-3 pt-3 px-4">
+          <a href="{% url 'sign-in' %}" class="flex-1 text-center text-slate-300 border border-slate-600 hover:border-slate-400 px-4 py-2 rounded-lg text-sm font-medium transition-all">Sign In</a>
+          <a href="{% url 'sign-up' %}" class="flex-1 text-center btn-primary text-white px-4 py-2 rounded-lg text-sm font-semibold">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="h-16"></div>

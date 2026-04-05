@@ -117,12 +117,23 @@ WSGI_APPLICATION = 'event_management.wsgi.application'
 
 #onRender
 
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default='postgresql://event_management_pp1p_user:3jfY89yVzZVjv1K2GIPBRY4la5L8CWWD@dpg-d3d65qumcj7s73ebaumg-a.oregon-postgres.render.com/event_management_pp1p',
+#         conn_max_age=600
+#     )
+# }
+
+
+
+#Neon 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgresql://event_management_pp1p_user:3jfY89yVzZVjv1K2GIPBRY4la5L8CWWD@dpg-d3d65qumcj7s73ebaumg-a.oregon-postgres.render.com/event_management_pp1p',
+        default='postgresql://neondb_owner:npg_OMf2ECutsd0g@ep-weathered-mouse-a1jnuiqy-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require',
         conn_max_age=600
     )
 }
+
 
 
 
